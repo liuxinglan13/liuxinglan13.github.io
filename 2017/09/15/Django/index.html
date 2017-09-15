@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="部署,linux," />
 
 
 
@@ -96,6 +96,7 @@
 
 
 <meta name="description" content="这两天部署了一下自己写的django blog 记录一下备忘  系统：Ubuntu 16.04.2  部署方案：Gunicorn+Nginx+Django+supervisor+Virtualenv  virtualenv 创建一个python3环境用于运行django blog">
+<meta name="keywords" content="部署,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DJango部署 Gunicorn+Nginx+Django+supervisor+Virtualenv">
 <meta property="og:url" content="http://yoursite.com/2017/09/15/Django/index.html">
@@ -106,7 +107,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-5f07665d170911da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-cb45719eff78324e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-dba40dcfe0ff4d17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-15T14:41:41.000Z">
+<meta property="og:updated_time" content="2017-09-15T15:20:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DJango部署 Gunicorn+Nginx+Django+supervisor+Virtualenv">
 <meta name="twitter:description" content="这两天部署了一下自己写的django blog 记录一下备忘  系统：Ubuntu 16.04.2  部署方案：Gunicorn+Nginx+Django+supervisor+Virtualenv  virtualenv 创建一个python3环境用于运行django blog">
@@ -207,6 +208,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -409,6 +430,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
 
       
       
@@ -491,13 +520,22 @@
             
             
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -505,6 +543,14 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liuxinglan13" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
           
         </div>
 
