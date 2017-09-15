@@ -206,16 +206,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -227,9 +217,9 @@
       
         
         <li class="menu-item menu-item-python">
-          <a href="/categories/" rel="section">
+          <a href="/categories/python/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             python
           </a>
@@ -237,9 +227,9 @@
       
         
         <li class="menu-item menu-item-django">
-          <a href="/categories/" rel="section">
+          <a href="/categories/django/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             django
           </a>
@@ -370,40 +360,20 @@
 
       
         
-          
-            <p>这两天部署了一下自己写的django blog 记录一下备忘</p>
+          <p>这两天部署了一下自己写的django blog 记录一下备忘</p>
 <ul>
 <li><p>系统：Ubuntu 16.04.2</p>
 </li>
 <li><p>部署方案：Gunicorn+Nginx+Django+supervisor+Virtualenv</p>
 </li>
-<li>virtualenv 创建一个python3环境用于运行django blog</li>
-</ul>
-<hr>
-<p>####1.安装相关软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">apt-get install nginx                            //安装nginx</div><div class="line"></div><div class="line">systemctl enable nginx                     //设置nginx开机自启动</div><div class="line"></div><div class="line">apt-getinstall python3 python3-pip    //安装python3和PIP</div><div class="line"></div><div class="line">python3-m pip install virtualenv         //安装virtualenv</div></pre></td></tr></table></figure></p>
-<p>####2.创建项目环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir  /django                                        //dango相关主目录</div><div class="line"></div><div class="line">mkdir  /django/site                                 //用来放网站文件</div><div class="line"></div><div class="line">mkdir  /django/env                                //用来放虚拟环境目录</div><div class="line"></div><div class="line">创建虚拟环境</div><div class="line"></div><div class="line">cd/django/env</div><div class="line"></div><div class="line">virtualenv --python=python3 django               //这个用来跑django项目</div></pre></td></tr></table></figure></p>
-<p>####3.拉取django项目文件并安装项目依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">cd/django/site</div><div class="line"></div><div class="line">git cloneXXXXXXXX(你的项目git仓库地址)                        //拉取项目</div><div class="line"></div><div class="line">cd  Django-project（你的Django项目）</div><div class="line"></div><div class="line">source /django/env/django/bin/activate                                 //激活虚拟环境</div><div class="line"></div><div class="line">pip install -r requirements                                //安装项目依赖这步不懂的自行百度pip</div><div class="line"></div><div class="line">安装完毕依赖后</div><div class="line"></div><div class="line">python manager.py runserver                       //测试一下项目和环境在本机能正常访问127.0.0.1:8000表示正常</div><div class="line"></div><div class="line">pip install gunicorn                                           //在虚拟环境下安装gunicorn</div><div class="line"></div><div class="line">pip install gevent//在虚拟环境下安装gevent</div></pre></td></tr></table></figure></p>
-<p>####4.django相关配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">配置项目settings.py</div><div class="line"></div><div class="line">INSTALLED_APPS下添加gunicorn</div><div class="line"></div><div class="line">DEBUG= False               //关闭调试模式</div><div class="line"></div><div class="line">ALLOWED_HOSTS= [&apos;*&apos;]                  //我直接设成所有了也可以根据自己需要设置</div><div class="line"></div><div class="line">STATIC_ROOT= os.path.join(BASE_DIR, &apos;static&apos;)              //设置静态文件目录</div><div class="line"></div><div class="line">python manage.py collectstatic               //收集静态文件（在django虚拟环境下执行）</div></pre></td></tr></table></figure></p>
-<p>####5.测试gunicorn<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">使用gunicorn替换runserver启动django</div><div class="line"></div><div class="line">激活虚拟环境切换到Django项目根目录</div><div class="line"></div><div class="line">gunicorn --worker-class=gevent blogprject.wsgi:application</div><div class="line"></div><div class="line">//blogprject就是你的项目名称内有setting.py和wsgi.py的那个文件夹的名字</div><div class="line"></div><div class="line">无报错，能正常访问127.0.0.1:8000表示成功</div></pre></td></tr></table></figure></p>
-<p>####6.配置 nginx<br>vim /etc/nginx/sites-available/default                 //ubuntu下是这个配置文件（记得先备份）其他系统一般是      /etc/nginx/nginx.conf<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen   <span class="number">80</span>;</div><div class="line"></div><div class="line">        server_name <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>;</div><div class="line">        access_log  /var/log/nginx/django.log;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">                proxy_pass http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>;</div><div class="line">                proxy_set_header Host $host;</div><div class="line">                proxy_set_header X-Real-IP $remote_addr;</div><div class="line">                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location /static/ &#123;                                          <span class="comment">#静态文件引用所有url中带static的都指向下面的目录</span></div><div class="line">                root /django/site/Django-project;       <span class="comment">#Django项目所在目录</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location /media/ &#123;                                         <span class="comment">#同上这个文件我的项目中是放图片和头像的</span></div><div class="line">                root /django/site/Django-project;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>测试 先开启nginx 再运行 gunicorn 后 访问服务器外网IP 能正常访问–正常</p>
-<p>####7.配置 supervisor<br>守护进程 作用自行百度我的理解 就是 保证 gunicorn 进程一直存在 方便启动和停止<br>superisor 不支持python3 不过不影响使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-get install python-pip                //安装python2下的pip ubuntu自带python2.7</div><div class="line">pip install supervisor                             //直接在ubuntu中安装 不是虚拟环境</div><div class="line">echo_supervisord_conf &gt; supervisor.conf                   //创建配置文件</div><div class="line">vim supervisor.conf                                                                            //编辑配置文件</div></pre></td></tr></table></figure></p>
-<p>激活web页面对比一下原配置文件去掉冒号就行了<br><img src="http://upload-images.jianshu.io/upload_images/7929840-20317997a6190ed6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7929840-5f07665d170911da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>配置要守护的进程 gunirorn<br><img src="http://upload-images.jianshu.io/upload_images/7929840-cb45719eff78324e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>说明：/django/env/django/bin/gunicorn 是虚拟目录django的路径</p>
-<p>####supervisor操作<br>• supervisord -c supervisor.conf                   //启动supervisor程序<br>• supervisorctl                                                             //进入交互式界面 输用户名密码（默认 user/123  配置文件里有）<br>• status                                                                        //查看APP状态</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7929840-dba40dcfe0ff4d17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>• start all   start django                                 //启动所有app或者启动指定<br>• stop       同上<br>• 测试 能否通过 supervisor  启动或停止 gunicron</p>
-<p>####设置supervisor开机自启动<br>创建启动文件    vim /lib/systemd/system/supervisord.service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line"></div><div class="line">Description=Process Monitoring and Control Daemon</div><div class="line"></div><div class="line">After=rc-local.service</div><div class="line"></div><div class="line"></div><div class="line">[Service]</div><div class="line"></div><div class="line">Type=forking</div><div class="line"></div><div class="line">ExecStart=/usr/local/bin/supervisord -c /django/supervisor.conf               //   /django/supervisor.conf配置文件的路径最好使用绝对路径</div><div class="line"></div><div class="line">SysVStartPriority=99</div><div class="line"></div><div class="line"></div><div class="line">[Install]</div><div class="line"></div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
-<p>systemctl stop supervisord.service<br>systemctl start supervisord.service<br>测试能都通过上述命令 停止和启动 supervisor 如果可以表示成功<br>systemctl enable supervisord.service     设置开机自启动因为在 配置文件中已经开启了 gunicron app 随supervisor启动后自启<br>确保nginx也是开机自启动后，尝试 reboot 系统<br>如重启后能正常访问页面表示成功！！</p>
-<p>####使用 Fabric<br>还可以使用 fabric 进一步自动化部署<br>更新服务器上代码的步骤一般有这么几个吧？</p>
-<ul>
-<li>到github上下载更新的代码</li>
-<li>重新收集一下静态文件</li>
-<li>重新启动 gunicorn</li>
-<li>重新启动 nginx<br>最少也要上面四个步骤吧？如果每次更新都这样来一遍页很麻烦吧？</li>
-</ul>
-<p>###所以该 Fabric 这个神器出场啦。。。。</p>
-
-          
+<li>virtualenv 创建一个python3环境用于运行django blog
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/15/Django/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -542,19 +512,16 @@
 
       
         
-          
-            <p>#测试 这是正文。。。</p>
+          <p>#测试 这是正文。。。</p>
 <p>##测试啊</p>
-<p>#####测试啊啊啊</p>
-<ul>
-<li>1</li>
-<li>2</li>
-<li>3<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen   80;</div><div class="line"></div><div class="line">        server_name 127.0.0.1:8000;</div><div class="line">        access_log  /var/log/nginx/django.log;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">                proxy_pass http://127.0.0.1:8000;</div><div class="line">                proxy_set_header Host $host;</div><div class="line">                proxy_set_header X-Real-IP $remote_addr;</div><div class="line">                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location /static/ &#123;                                          #静态文件引用所有url中带static的都指向下面的目录</div><div class="line">                root /django/site/Django-project;       #Django项目所在目录</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location /media/ &#123;                                         #同上这个文件我的项目中是放图片和头像的</div><div class="line">                root /django/site/Django-project;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fjhwss0v7hj30m80dwdgi.jpg" alt=""></p>
-
-          
+<p>#####测试啊啊啊<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/15/测试测试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -772,7 +739,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
