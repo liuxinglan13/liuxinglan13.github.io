@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-5f07665d170911da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-cb45719eff78324e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-dba40dcfe0ff4d17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-15T15:20:09.000Z">
+<meta property="og:updated_time" content="2017-09-17T09:06:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DJango部署 Gunicorn+Nginx+Django+supervisor+Virtualenv">
 <meta name="twitter:description" content="这两天部署了一下自己写的django blog 记录一下备忘  系统：Ubuntu 16.04.2  部署方案：Gunicorn+Nginx+Django+supervisor+Virtualenv  virtualenv 创建一个python3环境用于运行django blog">
@@ -323,7 +323,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T22:16:56+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T22:16:00+08:00">
                 2017-09-15
               </time>
             
@@ -393,7 +393,7 @@
 </li>
 </ul>
 <hr>
-<p>####1.安装相关软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">apt-get install nginx                            //安装nginx</div><div class="line"></div><div class="line">systemctl enable nginx                     //设置nginx开机自启动</div><div class="line"></div><div class="line">apt-getinstall python3 python3-pip    //安装python3和PIP</div><div class="line"></div><div class="line">python3-m pip install virtualenv         //安装virtualenv</div></pre></td></tr></table></figure></p>
+<h4 id="1-安装相关软件"><a href="#1-安装相关软件" class="headerlink" title="1.安装相关软件"></a>1.安装相关软件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">apt-get install nginx                            //安装nginx</div><div class="line"></div><div class="line">systemctl enable nginx                     //设置nginx开机自启动</div><div class="line"></div><div class="line">apt-getinstall python3 python3-pip    //安装python3和PIP</div><div class="line"></div><div class="line">python3-m pip install virtualenv         //安装virtualenv</div></pre></td></tr></table></figure>
 <p>####2.创建项目环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir  /django                                        //dango相关主目录</div><div class="line"></div><div class="line">mkdir  /django/site                                 //用来放网站文件</div><div class="line"></div><div class="line">mkdir  /django/env                                //用来放虚拟环境目录</div><div class="line"></div><div class="line">创建虚拟环境</div><div class="line"></div><div class="line">cd/django/env</div><div class="line"></div><div class="line">virtualenv --python=python3 django               //这个用来跑django项目</div></pre></td></tr></table></figure></p>
 <p>####3.拉取django项目文件并安装项目依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">cd/django/site</div><div class="line"></div><div class="line">git cloneXXXXXXXX(你的项目git仓库地址)                        //拉取项目</div><div class="line"></div><div class="line">cd  Django-project（你的Django项目）</div><div class="line"></div><div class="line">source /django/env/django/bin/activate                                 //激活虚拟环境</div><div class="line"></div><div class="line">pip install -r requirements                                //安装项目依赖这步不懂的自行百度pip</div><div class="line"></div><div class="line">安装完毕依赖后</div><div class="line"></div><div class="line">python manager.py runserver                       //测试一下项目和环境在本机能正常访问127.0.0.1:8000表示正常</div><div class="line"></div><div class="line">pip install gunicorn                                           //在虚拟环境下安装gunicorn</div><div class="line"></div><div class="line">pip install gevent//在虚拟环境下安装gevent</div></pre></td></tr></table></figure></p>
 <p>####4.django相关配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">配置项目settings.py</div><div class="line"></div><div class="line">INSTALLED_APPS下添加gunicorn</div><div class="line"></div><div class="line">DEBUG= False               //关闭调试模式</div><div class="line"></div><div class="line">ALLOWED_HOSTS= [&apos;*&apos;]                  //我直接设成所有了也可以根据自己需要设置</div><div class="line"></div><div class="line">STATIC_ROOT= os.path.join(BASE_DIR, &apos;static&apos;)              //设置静态文件目录</div><div class="line"></div><div class="line">python manage.py collectstatic               //收集静态文件（在django虚拟环境下执行）</div></pre></td></tr></table></figure></p>
@@ -444,6 +444,22 @@
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/16/Django-admin-七牛/" rel="prev" title="Django-admin-七牛">
+                Django-admin-七牛 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
       
@@ -491,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -510,7 +535,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -565,6 +590,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装相关软件"><span class="nav-number">1.</span> <span class="nav-text">1.安装相关软件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
