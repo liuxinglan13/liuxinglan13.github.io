@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-5f07665d170911da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-cb45719eff78324e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7929840-dba40dcfe0ff4d17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-17T14:04:17.000Z">
+<meta property="og:updated_time" content="2017-09-18T01:45:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DJango部署 Gunicorn+Nginx+Django+supervisor+Virtualenv">
 <meta name="twitter:description" content="这两天部署了一下自己写的django blog 记录一下备忘  系统：Ubuntu 16.04.2  部署方案：Gunicorn+Nginx+Django+supervisor+Virtualenv  virtualenv 创建一个python3环境用于运行django blog">
@@ -394,7 +394,7 @@
 <li>重新启动 gunicorn</li>
 <li>重新启动 nginx<br>最少也要上面四个步骤吧？如果每次更新都这样来一遍页很麻烦吧？</li>
 </ul>
-<h3 id="所以该-Fabric-这个神器出场啦。。。。"><a href="#所以该-Fabric-这个神器出场啦。。。。" class="headerlink" title="所以该 Fabric 这个神器出场啦。。。。"></a>所以该 Fabric 这个神器出场啦。。。。</h3>
+<h4 id="所以该-Fabric-这个神器出场啦。。。。"><a href="#所以该-Fabric-这个神器出场啦。。。。" class="headerlink" title="所以该 Fabric 这个神器出场啦。。。。"></a>所以该 Fabric 这个神器出场啦。。。。</h4>
       
     </div>
     
@@ -563,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装相关软件"><span class="nav-number">1.</span> <span class="nav-text">安装相关软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建项目环境"><span class="nav-number">2.</span> <span class="nav-text">创建项目环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拉取django项目文件并安装项目依赖"><span class="nav-number">3.</span> <span class="nav-text">拉取django项目文件并安装项目依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django相关配置"><span class="nav-number">4.</span> <span class="nav-text">django相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试gunicorn"><span class="nav-number">5.</span> <span class="nav-text">测试gunicorn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-nginx"><span class="nav-number">6.</span> <span class="nav-text">配置 nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-supervisor"><span class="nav-number">7.</span> <span class="nav-text">配置 supervisor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#supervisor操作"><span class="nav-number">8.</span> <span class="nav-text">supervisor操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置supervisor开机自启动"><span class="nav-number">9.</span> <span class="nav-text">设置supervisor开机自启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所以该-Fabric-这个神器出场啦。。。。"><span class="nav-number"></span> <span class="nav-text">所以该 Fabric 这个神器出场啦。。。。</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装相关软件"><span class="nav-number">1.</span> <span class="nav-text">安装相关软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建项目环境"><span class="nav-number">2.</span> <span class="nav-text">创建项目环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拉取django项目文件并安装项目依赖"><span class="nav-number">3.</span> <span class="nav-text">拉取django项目文件并安装项目依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django相关配置"><span class="nav-number">4.</span> <span class="nav-text">django相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试gunicorn"><span class="nav-number">5.</span> <span class="nav-text">测试gunicorn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-nginx"><span class="nav-number">6.</span> <span class="nav-text">配置 nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-supervisor"><span class="nav-number">7.</span> <span class="nav-text">配置 supervisor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#supervisor操作"><span class="nav-number">8.</span> <span class="nav-text">supervisor操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置supervisor开机自启动"><span class="nav-number">9.</span> <span class="nav-text">设置supervisor开机自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所以该-Fabric-这个神器出场啦。。。。"><span class="nav-number">10.</span> <span class="nav-text">所以该 Fabric 这个神器出场啦。。。。</span></a></li></ol></div>
             
 
           </div>
