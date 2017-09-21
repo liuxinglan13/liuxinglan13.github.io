@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh1234567891011&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFTP访">
+<meta name="description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh123456789101112&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubunt配置Sftp-ssh免密码登录">
 <meta property="og:url" content="http://yoursite.com/2017/09/21/Ubunt配置Sftp-ssh免密码登录/index.html">
 <meta property="og:site_name" content="镜kong的小黑屋">
-<meta property="og:description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh1234567891011&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFTP访">
+<meta property="og:description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh123456789101112&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFT">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-21T12:45:35.000Z">
+<meta property="og:updated_time" content="2017-09-21T12:56:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubunt配置Sftp-ssh免密码登录">
-<meta name="twitter:description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh1234567891011&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFTP访">
+<meta name="twitter:description" content="Ubunt配置Sftp-ssh免密码登录之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接  系统：Ubuntu 16.04 软件：openssh123456789101112&amp;lt;!-- more --&amp;gt;安装opensshsudo apt-get install openssh-server为SFT">
 
 
 
@@ -360,7 +360,7 @@
         <h1 id="Ubunt配置Sftp-ssh免密码登录"><a href="#Ubunt配置Sftp-ssh免密码登录" class="headerlink" title="Ubunt配置Sftp-ssh免密码登录"></a>Ubunt配置Sftp-ssh免密码登录</h1><p>之前都是用的Ftp，今天有两个客户要求用Sftp没用过，今天研究了一下，记录备忘<br>SFTP其实就是加密的FTP 可以通过ssh密匙 免密码连接</p>
 <ul>
 <li>系统：Ubuntu 16.04</li>
-<li>软件：openssh<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;!-- more --&gt;</div><div class="line">安装openssh</div><div class="line">sudo apt-get install openssh-server</div><div class="line">为SFTP访问创建用户组，便于管理权限</div><div class="line">sudo addgroup sftp-users</div><div class="line">创建用户加入组，不允许登录系统</div><div class="line">sudo adduser alice </div><div class="line">sudo usermod -G sftp-users -s /bin/false alice</div><div class="line">创建SSH用户组，并把管理员加入到该组（注意usermod中的-a参数的意思是不从其他用户组用移除）</div><div class="line">sudo addgroup ssh-users </div><div class="line">sudo usermod -a -G ssh-users root</div></pre></td></tr></table></figure>
+<li>软件：openssh<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!-- more --&gt;</div><div class="line"></div><div class="line">安装openssh</div><div class="line">sudo apt-get install openssh-server</div><div class="line">为SFTP访问创建用户组，便于管理权限</div><div class="line">sudo addgroup sftp-users</div><div class="line">创建用户加入组，不允许登录系统</div><div class="line">sudo adduser alice </div><div class="line">sudo usermod -G sftp-users -s /bin/false alice</div><div class="line">创建SSH用户组，并把管理员加入到该组（注意usermod中的-a参数的意思是不从其他用户组用移除）</div><div class="line">sudo addgroup ssh-users </div><div class="line">sudo usermod -a -G ssh-users root</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>准备“监狱”的根目录及共享目录。这里解释一下，“监狱”的根目录必须满足以下要求：所有者为root，其他任何用户都不能拥有写入权限。因此，为了让SFTP用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。为了便于管理员通过SFTP管理上传的文件，我把这个共享文件目录配置为：由admin所有，允许sftp-users读写。这样，管理员和SFTP用户组成员就都能读写这个目录了。</p>
