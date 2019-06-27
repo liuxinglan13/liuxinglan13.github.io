@@ -1764,7 +1764,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff4a63;
+  background: #ffb61d;
 }
 .feed-link,
 .chat {
@@ -2961,22 +2961,4 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
-}
-.site-meta {
-  background: #f0d784;
-}
-.brand {
-  color: #2f9833;
-}
-.site-subtitle {
-  color: #47b54a;
-}
-.footer {
-  color: #f0d784;
-}
-.footer a {
-  color: #f0d784;
-}
-.footer .with-love {
-  color: #f0d784;
 }
