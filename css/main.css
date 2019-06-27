@@ -1764,7 +1764,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e2c621;
+  background: #ff4a63;
 }
 .feed-link,
 .chat {
@@ -2958,6 +2958,9 @@ ul.breadcrumb li+li:last-child {
 }
 body {
   background: url("/images/beijing.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
 }
 .site-meta {
   background: #f0d784;
