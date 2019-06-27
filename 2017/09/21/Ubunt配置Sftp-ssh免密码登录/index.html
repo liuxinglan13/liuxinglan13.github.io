@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -74,21 +74,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/21/Ubunt配置Sftp-ssh免密码登录/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/21/Ubunt配置Sftp-ssh免密码登录/">
 
 
 
@@ -169,7 +169,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">镜kong的小黑屋</span>
         <span class="logo-line-after"><i></i></span>
@@ -199,7 +199,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -209,7 +209,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -219,7 +219,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -229,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -272,7 +272,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jing&kong">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://owf32noct.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -308,7 +308,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -363,29 +363,29 @@
 <li>软件：openssh<a id="more"></a>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">安装openssh</div><div class="line">sudo apt-get install openssh-server</div><div class="line">为SFTP访问创建用户组，便于管理权限</div><div class="line">sudo addgroup sftp-users</div><div class="line">创建用户加入组，不允许登录系统</div><div class="line">sudo adduser alice </div><div class="line">sudo usermod -G sftp-users -s /bin/false alice</div><div class="line">创建SSH用户组，并把管理员加入到该组（注意usermod中的-a参数的意思是不从其他用户组用移除）</div><div class="line">sudo addgroup ssh-users </div><div class="line">sudo usermod -a -G ssh-users root</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">安装openssh</span><br><span class="line">sudo apt-get install openssh-server</span><br><span class="line">为SFTP访问创建用户组，便于管理权限</span><br><span class="line">sudo addgroup sftp-users</span><br><span class="line">创建用户加入组，不允许登录系统</span><br><span class="line">sudo adduser alice </span><br><span class="line">sudo usermod -G sftp-users -s /bin/false alice</span><br><span class="line">创建SSH用户组，并把管理员加入到该组（注意usermod中的-a参数的意思是不从其他用户组用移除）</span><br><span class="line">sudo addgroup ssh-users </span><br><span class="line">sudo usermod -a -G ssh-users root</span><br></pre></td></tr></table></figure>
 <p>准备“监狱”的根目录及共享目录。这里解释一下，“监狱”的根目录必须满足以下要求：所有者为root，其他任何用户都不能拥有写入权限。因此，为了让SFTP用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。为了便于管理员通过SFTP管理上传的文件，我把这个共享文件目录配置为：由admin所有，允许sftp-users读写。这样，管理员和SFTP用户组成员就都能读写这个目录了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo mkdir /home/sftp_root</div><div class="line">sudo mkdir /home/sftp_root/shared</div><div class="line">sudo chown root:sftp-users /home/sftp_root/shared</div><div class="line">sudo chmod 770 /home/sftp_root/shared</div></pre></td></tr></table></figure>
-<h3 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sudo vi/etc/ssh/sshd_config</div><div class="line"></div><div class="line">文件底部添加</div><div class="line">AllowGroups ssh-users sftp-users</div><div class="line">Match User sftp-ly   # 针对用户设置额外配置</div><div class="line">    ChrootDirectory /sftp/sftp_root_ly/   # 根目录</div><div class="line">    AllowTcpForwarding no</div><div class="line">    X11Forwarding no</div><div class="line">    ForceCommand internal-sftp</div><div class="line">Match User sftp-siemens</div><div class="line">    ChrootDirectory /sftp/sftp_root_siemens/</div><div class="line">    AllowTcpForwarding no</div><div class="line">    X11Forwarding no</div><div class="line">    ForceCommand internal-sftp</div><div class="line"># 针对组设置</div><div class="line">Match Group sftp-users</div><div class="line">	.......</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /home/sftp_root</span><br><span class="line">sudo mkdir /home/sftp_root/shared</span><br><span class="line">sudo chown root:sftp-users /home/sftp_root/shared</span><br><span class="line">sudo chmod 770 /home/sftp_root/shared</span><br></pre></td></tr></table></figure>
+<h3 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sudo vi/etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line">文件底部添加</span><br><span class="line">AllowGroups ssh-users sftp-users</span><br><span class="line">Match User sftp-ly   # 针对用户设置额外配置</span><br><span class="line">    ChrootDirectory /sftp/sftp_root_ly/   # 根目录</span><br><span class="line">    AllowTcpForwarding no</span><br><span class="line">    X11Forwarding no</span><br><span class="line">    ForceCommand internal-sftp</span><br><span class="line">Match User sftp-siemens</span><br><span class="line">    ChrootDirectory /sftp/sftp_root_siemens/</span><br><span class="line">    AllowTcpForwarding no</span><br><span class="line">    X11Forwarding no</span><br><span class="line">    ForceCommand internal-sftp</span><br><span class="line"># 针对组设置</span><br><span class="line">Match Group sftp-users</span><br><span class="line">	.......</span><br></pre></td></tr></table></figure>
 <p>只允许ssh-uers及sftp-users通过SSH访问系统；<br>可以针对用户或组，额外增加一些设置：将“/home/sftp_root”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；禁止TCP Forwarding和X11 Forwarding；强制该组用户仅仅使用SFTP</p>
 <p>到这sftp就算配置完成了</p>
 <h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ul>
-<li>linux<br>随便找一台linux主机<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sftp root@172.16.1.100</div></pre></td></tr></table></figure>
+<li>linux<br>随便找一台linux主机<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp root@172.16.1.100</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>如果提示输密码，连接成功可以上传文件 表示成功！</p>
 <hr>
 <h2 id="配置ssh免密登录"><a href="#配置ssh免密登录" class="headerlink" title="配置ssh免密登录"></a>配置ssh免密登录</h2><ul>
 <li><p>生成密匙<br>在服务器上执行一下命令生成密匙</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div><div class="line"></div><div class="line">默认生成的路径是  /root/.ssh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line"></span><br><span class="line">默认生成的路径是  /root/.ssh</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>id_rsa            是私钥    一般用于客户端</p>
 </li>
 <li>id_rsa.pub   是公钥   一般用于服务器端</li>
 </ul>
-<h3 id="服务器上注册公钥"><a href="#服务器上注册公钥" class="headerlink" title="服务器上注册公钥"></a>服务器上注册公钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在/root/.ssh 目录下</div><div class="line">cat id_rsa.pub &gt;&gt; authorized_keys</div></pre></td></tr></table></figure>
+<h3 id="服务器上注册公钥"><a href="#服务器上注册公钥" class="headerlink" title="服务器上注册公钥"></a>服务器上注册公钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在/root/.ssh 目录下</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure>
 <h4 id="将私钥放到客户端"><a href="#将私钥放到客户端" class="headerlink" title="将私钥放到客户端"></a>将私钥放到客户端</h4><ul>
-<li>linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp id_rsa root@172.16.1.11:/root/.ssh</div></pre></td></tr></table></figure>
+<li>linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa root@172.16.1.11:/root/.ssh</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>也可以直接vim打开后复制私钥后在客户端.ssh文件夹下建立同名文件黏贴私钥</p>
@@ -393,7 +393,7 @@
 <li>windows<br>直接通过复制黏贴获取私钥  id_rsa</li>
 </ul>
 <h4 id="免密连接SFTP"><a href="#免密连接SFTP" class="headerlink" title="免密连接SFTP"></a>免密连接SFTP</h4><ul>
-<li>linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sftp root@172.16.1.100</div></pre></td></tr></table></figure>
+<li>linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp root@172.16.1.100</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>不用输密码能直接连接成功表示成功</p>
@@ -402,7 +402,7 @@
 </ul>
 <p>！！！不用输入密码，能连接成功！！成功啦！</p>
 <h3 id="服务器端提供多用户服务"><a href="#服务器端提供多用户服务" class="headerlink" title="服务器端提供多用户服务"></a>服务器端提供多用户服务</h3><p>如果要在SFTP服务器上建立多个用户 分别提供服务<br>只需要在 相应用户的 /home/用户/.ssh           下放置正确的公匙并注册<br>即可用相应的私钥 来连接</p>
-<h3 id="一个共享提供多个客户端连接"><a href="#一个共享提供多个客户端连接" class="headerlink" title="一个共享提供多个客户端连接"></a>一个共享提供多个客户端连接</h3><p>一个sftp用户共享提供多个客户端连接<br>只需要在相应用户的.ssh文件下的 authorized_keys 文件夹内添加多个公钥即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub &gt;&gt; authorized_keys         多来几次就行</div></pre></td></tr></table></figure></p>
+<h3 id="一个共享提供多个客户端连接"><a href="#一个共享提供多个客户端连接" class="headerlink" title="一个共享提供多个客户端连接"></a>一个共享提供多个客户端连接</h3><p>一个sftp用户共享提供多个客户端连接<br>只需要在相应用户的.ssh文件下的 authorized_keys 文件夹内添加多个公钥即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys         多来几次就行</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -492,7 +492,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -504,9 +504,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
-            <img class="site-author-image" itemprop="image"
-              src="http://owf32noct.bkt.clouddn.com/avatar.png"
-              alt="jing&kong" />
+            <img class="site-author-image" itemprop="image" src="http://owf32noct.bkt.clouddn.com/avatar.png" alt="jing&kong">
           
             <p class="site-author-name" itemprop="name">jing&kong</p>
             <p class="site-description motion-element" itemprop="description">来随便看看吧</p>
@@ -584,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubunt配置Sftp-ssh免密码登录"><span class="nav-number">1.</span> <span class="nav-text">Ubunt配置Sftp-ssh免密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改SSH配置文件"><span class="nav-number">1.0.1.</span> <span class="nav-text">修改SSH配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.0.2.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置ssh免密登录"><span class="nav-number">1.1.</span> <span class="nav-text">配置ssh免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器上注册公钥"><span class="nav-number">1.1.1.</span> <span class="nav-text">服务器上注册公钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将私钥放到客户端"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">将私钥放到客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#免密连接SFTP"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">免密连接SFTP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端提供多用户服务"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务器端提供多用户服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个共享提供多个客户端连接"><span class="nav-number">1.1.3.</span> <span class="nav-text">一个共享提供多个客户端连接</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubunt配置Sftp-ssh免密码登录"><span class="nav-number">1.</span> <span class="nav-text">Ubunt配置Sftp-ssh免密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改SSH配置文件"><span class="nav-number">1.0.1.</span> <span class="nav-text">修改SSH配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.0.2.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置ssh免密登录"><span class="nav-number">1.1.</span> <span class="nav-text">配置ssh免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器上注册公钥"><span class="nav-number">1.1.1.</span> <span class="nav-text">服务器上注册公钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将私钥放到客户端"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">将私钥放到客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#免密连接SFTP"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">免密连接SFTP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端提供多用户服务"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务器端提供多用户服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个共享提供多个客户端连接"><span class="nav-number">1.1.3.</span> <span class="nav-text">一个共享提供多个客户端连接</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -604,10 +602,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
