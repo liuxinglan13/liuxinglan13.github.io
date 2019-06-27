@@ -228,22 +228,6 @@
         
         
           
-          <li class="menu-item menu-item-about">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-tags">
 
     
@@ -382,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-06-27 14:46:45 / 修改时间：15:01:02" itemprop="dateCreated datePublished" datetime="2019-06-27T14:46:45+08:00">2019-06-27</time>
+              <time title="创建时间：2019-06-27 14:46:45 / 修改时间：15:23:14" itemprop="dateCreated datePublished" datetime="2019-06-27T14:46:45+08:00">2019-06-27</time>
             
 
             
@@ -422,17 +406,9 @@
 
       
         
-          <p><img src="1.jpeg" alt="测试"></p>
-<p><img src="2.jpeg" alt="图片测试"></p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/27/Linux/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
+            <a id="more"></a>
           
-          <!--/noindex-->
         
       
     </div>
@@ -1292,6 +1268,47 @@
   
 
   
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
