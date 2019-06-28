@@ -94,17 +94,19 @@
 
 
 
-  <meta name="description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github">
+  <meta name="description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github 文内图片引用 站点配置文件，关键字：post_asset_folder 1post_asset_folder: true  执行新建命令时会创建同名文件夹 1$ hexo n &amp;lt;title&amp;gt;  将图片放入同名文件夹下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo记录">
 <meta property="og:url" content="http://yoursite.com/2018/06/22/Hexo记录/index.html">
 <meta property="og:site_name" content="镜kong的小黑屋">
-<meta property="og:description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github">
+<meta property="og:description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github 文内图片引用 站点配置文件，关键字：post_asset_folder 1post_asset_folder: true  执行新建命令时会创建同名文件夹 1$ hexo n &amp;lt;title&amp;gt;  将图片放入同名文件夹下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-27T02:31:40.537Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/22/Hexo记录/66.jpeg">
+<meta property="og:updated_time" content="2019-06-28T06:55:10.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo记录">
-<meta name="twitter:description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github">
+<meta name="twitter:description" content="Hexo 常用命令123hexo new post “新blog名”       创建新bloghexo clean 清除缓存hexo d -g 生成及部署至github 文内图片引用 站点配置文件，关键字：post_asset_folder 1post_asset_folder: true  执行新建命令时会创建同名文件夹 1$ hexo n &amp;lt;title&amp;gt;  将图片放入同名文件夹下">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/22/Hexo记录/66.jpeg">
 
 
 
@@ -383,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-27 10:31:40" itemprop="dateModified" datetime="2019-06-27T10:31:40+08:00">2019-06-27</time>
+                <time title="修改时间：2019-06-28 14:55:10" itemprop="dateModified" datetime="2019-06-28T14:55:10+08:00">2019-06-28</time>
               
             
           </span>
@@ -418,6 +420,26 @@
 
       
         <h2 id="Hexo-常用命令"><a href="#Hexo-常用命令" class="headerlink" title="Hexo 常用命令"></a>Hexo 常用命令</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">hexo</span> new post “新<span class="keyword">blog名” </span>      创建新<span class="keyword">blog</span></span><br><span class="line"><span class="keyword">hexo </span>clean 清除缓存</span><br><span class="line"><span class="symbol">hexo</span> d -g 生成及部署至github</span><br></pre></td></tr></table></figure>
+<h2 id="文内图片引用"><a href="#文内图片引用" class="headerlink" title="文内图片引用"></a>文内图片引用</h2><ul>
+<li><p>站点配置文件，关键字：<code>post_asset_folder</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行新建命令时会创建同名文件夹</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将图片放入同名文件夹下，文章内图片相对引用</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_img</span> 图片名称.jpg 图片描述 %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
+<li><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_img</span> 图片名称.jpg 图片描述 %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><ul>
+<li><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_img</span> 图片名称.jpg 图片描述 %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h2><p>​    <img src="/2018/06/22/Hexo记录/66.jpeg" title="狗"></p>
 
       
     </div>
@@ -531,7 +553,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -648,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-常用命令"><span class="nav-number">1.</span> <span class="nav-text">Hexo 常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-常用命令"><span class="nav-number">1.</span> <span class="nav-text">Hexo 常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文内图片引用"><span class="nav-number">2.</span> <span class="nav-text">文内图片引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-1"><span class="nav-number">4.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-2"><span class="nav-number">5.</span> <span class="nav-text">例子</span></a></li></ol></div>
             
 
           </div>
