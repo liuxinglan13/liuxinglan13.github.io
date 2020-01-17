@@ -419,23 +419,23 @@
       
 
       
-        <h2 id="Hexo-常用命令"><a href="#Hexo-常用命令" class="headerlink" title="Hexo 常用命令"></a>Hexo 常用命令</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">hexo</span> new post “新<span class="keyword">blog名” </span>      创建新<span class="keyword">blog</span></span><br><span class="line"><span class="keyword">hexo </span>clean 清除缓存</span><br><span class="line"><span class="symbol">hexo</span> d -g 生成及部署至github</span><br></pre></td></tr></table></figure>
+        <h2 id="Hexo-常用命令"><a href="#Hexo-常用命令" class="headerlink" title="Hexo 常用命令"></a>Hexo 常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new post “新blog名”       创建新blog</span><br><span class="line">hexo clean 清除缓存</span><br><span class="line">hexo d -g 生成及部署至github</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h2 id="文内图片引用"><a href="#文内图片引用" class="headerlink" title="文内图片引用"></a>文内图片引用</h2><ul>
 <li><p>站点配置文件，关键字：<code>post_asset_folder</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行新建命令时会创建同名文件夹</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n &lt;title&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将图片放入同名文件夹下，文章内图片相对引用</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_img</span> 图片名称.jpg 图片描述 %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img 图片名称.jpg 图片描述 %&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>​    <img src="/2018/06/22/Hexo记录/66.jpeg" title="狗"></p>
 <h3 id="文内超链接"><a href="#文内超链接" class="headerlink" title="文内超链接"></a>文内超链接</h3><ul>
 <li><p>文内超链接</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">TextUrl</span>](<span class="link">https://blog.jyusun.com/</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[TextUrl](https://blog.jyusun.com/)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="开启版权声明"><a href="#开启版权声明" class="headerlink" title="开启版权声明"></a>开启版权声明</h3><ul>
@@ -447,7 +447,7 @@
 </ul>
 <ul>
 <li><p>站点配置文件, 关键字 <code>url</code> 修改为你自己的地址</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url:</span> <span class="string">http:</span><span class="comment">//yoursite.com</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://yoursite.com</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
