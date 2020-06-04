@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="镜kong的小黑屋">
 <meta property="og:description" content="Redis学习 Redis部署相关记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-04T02:07:22.694Z">
+<meta property="og:updated_time" content="2020-06-04T02:35:28.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis学习">
 <meta name="twitter:description" content="Redis学习 Redis部署相关记录">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：10:07:22" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
+              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：10:35:28" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
             
 
             
@@ -410,6 +410,35 @@
 <a id="more"></a>
 </li>
 </ul>
+<h3 id="集群模式总结"><a href="#集群模式总结" class="headerlink" title="集群模式总结"></a>集群模式总结</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单机</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>哨兵模式Sentinel</td>
+<td>配置相对简单,实现了高可用</td>
+<td>不支持横向扩展</td>
+</tr>
+<tr>
+<td>群集模式</td>
+<td>分布式,分槽,支持横向扩展</td>
+<td>只能使用DB0,部署复杂</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>总结,在数据量和性能要求不是特别高的时候,哨兵模式可以满足大部分需求</p>
+</blockquote>
 <h4 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h4><table>
 <thead>
 <tr>
@@ -425,7 +454,10 @@
 </tbody>
 </table>
 <blockquote>
-<p>此种部署模式不适用暴露出来对K8S环境外提供服务</p>
+<p>此种部署模式不适用暴露出来对K8S环境外提供服务,</p>
+<p>因为哨兵模式下只有Master节点可以写入,</p>
+<p>如果通过NodePort或者Treafik等将Redis暴露出去,当Master节点宕机时,客户端无法知晓新的Master,</p>
+<p>客户端需要访问Sentinel端口26379(默认)来获取master服务器的地址, 返回的将是pod的内部地址,外部客户端将无法连接.</p>
 </blockquote>
 
       
@@ -695,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis学习"><span class="nav-number">1.</span> <span class="nav-text">Redis学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哨兵模式"><span class="nav-number">1.1.</span> <span class="nav-text">哨兵模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis学习"><span class="nav-number">1.</span> <span class="nav-text">Redis学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群模式总结"><span class="nav-number">2.</span> <span class="nav-text">集群模式总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哨兵模式"><span class="nav-number">2.1.</span> <span class="nav-text">哨兵模式</span></a></li></ol></li></ol></div>
             
 
           </div>
