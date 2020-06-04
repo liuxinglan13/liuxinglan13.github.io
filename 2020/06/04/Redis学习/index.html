@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="镜kong的小黑屋">
 <meta property="og:description" content="Redis学习 Redis部署相关记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-04T02:35:28.184Z">
+<meta property="og:updated_time" content="2020-06-04T02:48:06.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis学习">
 <meta name="twitter:description" content="Redis学习 Redis部署相关记录">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：10:35:28" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
+              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：10:48:06" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
             
 
             
@@ -458,6 +458,7 @@
 <p>因为哨兵模式下只有Master节点可以写入,</p>
 <p>如果通过NodePort或者Treafik等将Redis暴露出去,当Master节点宕机时,客户端无法知晓新的Master,</p>
 <p>客户端需要访问Sentinel端口26379(默认)来获取master服务器的地址, 返回的将是pod的内部地址,外部客户端将无法连接.</p>
+<p>如果客户端在K8S集群内部则可通过内部IP连接.</p>
 </blockquote>
 
       
