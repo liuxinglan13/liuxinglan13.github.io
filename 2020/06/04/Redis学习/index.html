@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="镜kong的小黑屋">
 <meta property="og:description" content="Redis学习 Redis部署相关记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-04T08:27:58.948Z">
+<meta property="og:updated_time" content="2020-06-04T08:31:37.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis学习">
 <meta name="twitter:description" content="Redis学习 Redis部署相关记录">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：16:27:58" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
+              <time title="创建时间：2020-06-04 09:31:31 / 修改时间：16:31:37" itemprop="dateCreated datePublished" datetime="2020-06-04T09:31:31+08:00">2020-06-04</time>
             
 
             
@@ -473,8 +473,7 @@
 <p>客户端需要访问Sentinel端口26379(默认)来获取master服务器的地址, 返回的将是pod的内部地址,外部客户端将无法连接.</p>
 <p>如果客户端在K8S集群内部则可通过内部IP连接.</p>
 </blockquote>
-<h5 id="部署演示"><a href="#部署演示" class="headerlink" title="部署演示"></a>部署演示</h5><p>######安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install -f values.yaml stable/redis-ha --namespace redis --generate-name</span><br></pre></td></tr></table></figure>
+<h5 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install -f values.yaml stable/redis-ha --namespace redis --generate-name</span><br></pre></td></tr></table></figure>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># values.yaml</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="number">172.16</span><span class="number">.130</span><span class="number">.72</span><span class="string">/basis/redis</span>  <span class="comment">#我这里使用的是redis官方镜像</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">latest</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">redis:</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="attr">    requests:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">200</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">100</span><span class="string">m</span></span><br><span class="line"><span class="attr">    limits:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">700</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">sentinel:</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="attr">    requests:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">200</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">100</span><span class="string">m</span></span><br><span class="line"><span class="attr">    limits:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">200</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">persistentVolume:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  storageClass:</span> <span class="string">"nfs"</span>     <span class="comment"># 自己的storageClass</span></span><br><span class="line"><span class="attr">  accessModes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">ReadWriteOnce</span></span><br><span class="line"><span class="attr">  size:</span> <span class="number">10</span><span class="string">Gi</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>-f values.yaml 指定了一个配置文件,用来替换默认的参数,也可以不指定</p>
@@ -754,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis学习"><span class="nav-number">1.</span> <span class="nav-text">Redis学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群模式"><span class="nav-number">2.</span> <span class="nav-text">集群模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哨兵模式"><span class="nav-number">2.1.</span> <span class="nav-text">哨兵模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#部署演示"><span class="nav-number">2.1.1.</span> <span class="nav-text">部署演示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis学习"><span class="nav-number">1.</span> <span class="nav-text">Redis学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群模式"><span class="nav-number">2.</span> <span class="nav-text">集群模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哨兵模式"><span class="nav-number">2.1.</span> <span class="nav-text">哨兵模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#部署"><span class="nav-number">2.1.1.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
