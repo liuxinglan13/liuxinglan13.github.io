@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>一文看懂traefik - 镜kong的小黑屋</title>
+
+
+    <meta name="description" content="官网 https:&#x2F;&#x2F;containo.us&#x2F;traefik&#x2F;     参考 https:&#x2F;&#x2F;www.qikqiak.com&#x2F;post&#x2F;traefik-2.1-101&#x2F;   说明 Traefik 是一个边缘路由器，是你整个平台的大门，拦截并路由每个传入的请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文看懂traefik">
+<meta property="og:url" content="https://liuxinglan13.github.io/2020/01/17/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82traefik/index.html">
+<meta property="og:site_name" content="镜kong的小黑屋">
+<meta property="og:description" content="官网 https:&#x2F;&#x2F;containo.us&#x2F;traefik&#x2F;     参考 https:&#x2F;&#x2F;www.qikqiak.com&#x2F;post&#x2F;traefik-2.1-101&#x2F;   说明 Traefik 是一个边缘路由器，是你整个平台的大门，拦截并路由每个传入的请求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liuxinglan13.github.io/images/og_image.png">
+<meta property="article:published_time" content="2020-01-17T05:09:29.000Z">
+<meta property="article:modified_time" content="2020-06-04T09:03:41.184Z">
+<meta property="article:author" content="jing&amp;kong">
+<meta property="article:tag" content="traefik">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liuxinglan13.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/github-gist.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="一文看懂traefik" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives/">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories/">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags/">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about/">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://www.github.com/AlphaLxy">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <i class="fas fa-angle-double-right"></i>一文看懂traefik
+            
+        </h1>
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-17T05:09:29.000Z"><i class="far fa-calendar-alt">&nbsp;</i>2020-01-17</time>
+                
+                <time class="level-item has-text-grey is-hidden-mobile" datetime="2020-06-04T09:03:41.184Z"><i class="far fa-calendar-check">&nbsp;</i>2020-06-04</time>
+                
+                
+                <div class="level-item">
+                <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/k8s/">k8s</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-clock"></i>&nbsp;
+                    
+                    
+                    3 分钟 读完 (大约 485 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <div class="content">
+            <table>
+<thead>
+<tr>
+<th>官网</th>
+<th><a href="https://containo.us/traefik/" target="_blank" rel="noopener">https://containo.us/traefik/</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参考</td>
+<td><a href="https://www.qikqiak.com/post/traefik-2.1-101/" target="_blank" rel="noopener">https://www.qikqiak.com/post/traefik-2.1-101/</a></td>
+</tr>
+<tr>
+<td>说明</td>
+<td>Traefik 是一个边缘路由器，是你整个平台的大门，拦截并路由每个传入的请求</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<hr>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p><img src="3.png" alt="3"></p>
+<ol>
+<li><p>相比nginx-ingress配置要简单一点</p>
+</li>
+<li><p>有一个web界面看起来舒服一点</p>
+<p><img src="2.png" alt="2"></p>
+</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装直接参考上述连接,只修改namespace字段,单独放置.</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="暴露服务"><a href="#暴露服务" class="headerlink" title="暴露服务"></a>暴露服务</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressRoute</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">simpleingressroute</span>     <span class="comment">#名字随便取</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">entryPoints:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">web</span>                      <span class="comment">#监控80端口</span></span><br><span class="line">  <span class="attr">routes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">match:</span> <span class="string">Host(`test.rokin.cn`)</span>    <span class="comment">#监听的域名</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">Rule</span></span><br><span class="line">    <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web-whoami</span>           <span class="comment">#暴露的service</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span>                  <span class="comment"># 服务的端口</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不指定namespace就是默认default,如果要暴露其他ns下的svc,需要指定namespace字段</p>
+</blockquote>
+<p><img src="1.png" alt="1"></p>
+<p>IngressRoute如果创建,并且后端的services存在的话在界面上才会显示相应信息</p>
+<blockquote>
+<p>将相关域名解析到k8s节点的80和443端口上,就可以访问了</p>
+</blockquote>
+<h4 id="https"><a href="#https" class="headerlink" title="https"></a>https</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 创建secret, .cer也可以,secret也是ns下的</span><br><span class="line">kubectl create secret tls who-tls --cert&#x3D;tls.crt --key&#x3D;tls.key</span><br><span class="line">secret&#x2F;who-tls created</span><br><span class="line"></span><br><span class="line"># 修改或创建IngressRoute</span><br><span class="line">apiVersion: traefik.containo.us&#x2F;v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: ingressroutetls</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">    - websecure</span><br><span class="line">  routes:</span><br><span class="line">  - match: Host(&#96;who.qikqiak.com&#96;) &amp;&amp; PathPrefix(&#96;&#x2F;tls&#96;)</span><br><span class="line">    kind: Rule</span><br><span class="line">    services:</span><br><span class="line">    - name: whoami</span><br><span class="line">      port: 80</span><br><span class="line">  tls:                         # 添加</span><br><span class="line">    secretName: who-tls        # 添加 这就是上面创建的secret</span><br></pre></td></tr></table></figure>
+<h3 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a>中间层</h3><p>中间层是traefik的特色,可以实现很多功能,比如http自动跳转https,灰度发布,流量复制,等等,详见官网或参考.</p>
+<h4 id="http自动跳转https"><a href="#http自动跳转https" class="headerlink" title="http自动跳转https"></a>http自动跳转https</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 创建Middleware资源,也是ns下的</span><br><span class="line">apiVersion: traefik.containo.us&#x2F;v1alpha1</span><br><span class="line">kind: Middleware</span><br><span class="line">metadata:</span><br><span class="line">  name: redirect-https</span><br><span class="line">spec:</span><br><span class="line">  redirectScheme:</span><br><span class="line">    scheme: https</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: traefik.containo.us&#x2F;v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: ingressroutetls-http</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">    - web</span><br><span class="line">  routes:</span><br><span class="line">  - match: Host(&#96;who.qikqiak.com&#96;)</span><br><span class="line">    kind: Rule</span><br><span class="line">    services:</span><br><span class="line">    - name: whoami</span><br><span class="line">      port: 80</span><br><span class="line">    middlewares:                  # 添加</span><br><span class="line">    - name: redirect-https        # 添加</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样就会自动跳转到 who.qikqiak.com 的443上去</p>
+</blockquote>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>就是通过域名暴露比如redis 6379这种端口出去,参考文档中有项目说明,下图需要重点注意</p>
+<p><img src="image-20200604165951605.png" alt="image-20200604165951605"></p>
+<p><img src="image-20200604170335002.png" alt="image-20200604170335002"></p>
+
+        </div>
+        
+            <ul class="post-copyright">
+            <li><strong>本文标题：</strong><a href="https://liuxinglan13.github.io/2020/01/17/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82traefik/">一文看懂traefik</a></li>
+            <li><strong>本文作者：</strong><a href="https://liuxinglan13.github.io">jing&amp;kong</a></li>
+            <li><strong>本文链接：</strong><a href="https://liuxinglan13.github.io/2020/01/17/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82traefik/">https://liuxinglan13.github.io/2020/01/17/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82traefik/</a></li>
+            <li><strong>发布时间：</strong>2020-01-17</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+            </li>
+            </ul>
+        
+        
+        <hr style="height:1px;margin:1rem 0"/>
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
+                    <a class="has-link-grey -link" href="/tags/traefik/" rel="tag">traefik</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/17/k8s%E4%B8%8B%E9%83%A8%E7%BD%B2zookeeper%E7%BE%A4%E9%9B%86/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">k8s下部署zookeeper群集</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/17/%E9%83%A8%E7%BD%B2Prometheus-Operator/">
+                <span class="level-item">部署Prometheus Operator</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://liuxinglan13.github.io/2020/01/17/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82traefik/';
+        this.page.identifier = '2020/01/17/一文看懂traefik/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'alphalxy-blog' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level" style="margin-bottom:1rem">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-96x96 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/e0f4032c0f2d1068ffffbaf93c0bef52?s=96" alt="Xinyu Liu">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Xinyu Liu
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        liuxinyu0922@gmail.com
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Beijing, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level menu-list is-mobile" style="margin-bottom:1rem">
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/archives/">
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        9
+                    </p>
+                </a>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/categories/">
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </a>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/tags/">
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://www.github.com/AlphaLxy" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i>&nbsp;&nbsp;关注我</a>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+    
+        
+
+    <div class="card widget column-left is-sticky" id="toc">
+        <div class="card-content" style="max-height:calc(100vh - 22px);overflow:scroll">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#说明">
+        <span class="has-mr-6">1</span>
+        <span>说明</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装">
+        <span class="has-mr-6">2</span>
+        <span>安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用">
+        <span class="has-mr-6">3</span>
+        <span>使用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#暴露服务">
+        <span class="has-mr-6">3.1</span>
+        <span>暴露服务</span>
+        </a></li><li>
+        <a class="is-flex" href="#https">
+        <span class="has-mr-6">3.2</span>
+        <span>https</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#中间层">
+        <span class="has-mr-6">4</span>
+        <span>中间层</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#http自动跳转https">
+        <span class="has-mr-6">4.1</span>
+        <span>http自动跳转https</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#TCP">
+        <span class="has-mr-6">5</span>
+        <span>TCP</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="一文看懂traefik" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 jing&amp;kong&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                        
+                        <i class="fab fa-creative-commons"></i>&nbsp;<i class="fab fa-creative-commons-by"></i>&nbsp;<i class="fab fa-creative-commons-nc"></i>&nbsp;<i class="fab fa-creative-commons-sa"></i>&nbsp;
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://www.github.com/AlphaLxy">
+                        
+                        <i class="fab fa-github"></i>&nbsp;
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://liuxinglan13.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
