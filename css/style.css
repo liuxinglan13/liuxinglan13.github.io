@@ -608,3 +608,7 @@ figure.highlight .section {
   content: counter(section) "." counter(sub-section) "." counter(composite) " ";
   counter-increment: composite;
 }
+.image.is-96x96 {
+  height: 200px;
+  width: 200px;
+}
